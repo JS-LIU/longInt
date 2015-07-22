@@ -8,4 +8,9 @@ public class turn {
 		return i;
 	}
 	
+//	public int strToInt(String s,int i){
+//		char int_s = s.charAt(i);
+//		int int_i = int_s - '0';
+//		return int_i;
+//	}
 }

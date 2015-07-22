@@ -24,5 +24,6 @@ public class int_long_multiply {
 		t.multy_99_99();
 		t.multy_9999_99();
 		t.multy_99_9999();
+		//t.string_int();
 	}
 };

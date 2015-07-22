@@ -6,10 +6,6 @@ public class calculate {
 	//	多位数*个位数
 	public String multiply_as_a(String digA, char digB){
 		
-		/*	String str_mult_a = digA.subString(digA.length()-1,digA.length());
-		 *	字符串digA，digB的个位数 
-		 */
-		char str_mult_a;									//	乘数a
 		int int_remainder = 0;								//	余数
 		int int_carry = 0;									//	进位
 		String str_carry = "";
@@ -17,12 +13,13 @@ public class calculate {
 		
 		//	digA的每一位与digB相乘
 		for(int i = digA.length() - 1; i>=0; i--){
-			str_mult_a = digA.charAt(i);
+			//str_mult_a = digA.charAt(i);
 		
 			int int_a_a_result;
 			
-			//	char类型转换为int类型（先转换成 string 再转换成int）
-			int int_mult_a = t.charToInt(str_mult_a);
+			Digital str_mult_a = new Digital(digA);
+			int int_mult_a = str_mult_a.get(i);
+			
 			int int_mult_b = t.charToInt(digB);
 			
 			//	单位相乘；
@@ -33,8 +30,6 @@ public class calculate {
 			int_remainder += int_carry;				//	余数+进位
 			int_carry = int_a_a_result / 10;		//	进位
 			
-			
-			String str_remainder = String.valueOf(int_remainder);
 			str_carry = String.valueOf(int_carry);
 			
 			str_result.append(int_remainder);
@@ -58,34 +53,32 @@ public class calculate {
 	}
 	//	加法
 	public String add(String addA,String addB){
-		String str_add_long = compareString(addA,addB);
-		String str_add_short = "";
-		if(str_add_long.equals(addA)){
-			str_add_short = addB;
+		Digital str_add_long = new Digital(compareString(addA,addB));
+		String str_add_short_zj="";
+		if(str_add_long.s.equals(addA)){
+			str_add_short_zj = addB;
 		}else{
-			str_add_short = addA;
+			str_add_short_zj = addA;
 		}
-		char char_add_long;
-		char char_add_short;
+		Digital str_add_short = new Digital(str_add_short_zj);
+		
 		StringBuffer str_add_result = new StringBuffer();
-		int j = str_add_long.length() - str_add_short.length();
+		int j = str_add_long.s.length() - str_add_short.s.length();
 
 		int int_carry = 0;
 		int int_remainder = 0;
 		String str_carry = "";
 		
 		//	 实现加法逻辑
-		for(int i = str_add_long.length() - 1;i >= 0; i --){
+		for(int i = str_add_long.s.length() - 1;i >= 0; i --){
 				
-			char_add_long = str_add_long.charAt(i);
+			int int_add_long = str_add_long.get(i);
+			int int_add_short_zj = 0;
 			if(i-j > -1){
-				char_add_short = str_add_short.charAt(i-j);
-			}else{
-				char_add_short = '0';
+				int_add_short_zj = str_add_short.get(i-j);
 			}
-			
-			int int_add_long = t.charToInt(char_add_long);	
-			int int_add_short = t.charToInt(char_add_short);
+			int int_add_short = int_add_short_zj;
+
 			/*
 			 * 1.相加
 			 * 2.求余数
@@ -96,7 +89,6 @@ public class calculate {
 			int_remainder = int_result % 10;				//	余数
 			int_remainder += int_carry;
 			int_carry = int_result / 10;					//	进位
-			String str_remainder = String.valueOf(int_remainder);
 			str_carry = String.valueOf(int_carry);
 			str_add_result.append(int_remainder);
 		}
@@ -147,8 +139,6 @@ public class calculate {
 		}else{
 			str_dig_short = digA;
 		}
-		
-		
 		
 		char str_mult_b;	
 		
