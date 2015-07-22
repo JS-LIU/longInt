@@ -159,14 +159,13 @@ public class calculate {
 			int j = str_dig_short.length() - 1 - i;
 			str_mult_b = str_dig_short.charAt(i);
 			
-			str_result_last = multiply_as_a(str_dig_long, str_mult_b);
 			str_result_this = padding_0(j,str_result_last);
-			
+			str_result_last = multiply_as_a(str_dig_long, str_mult_b);
 			str_result_last = add(str_result_this,str_result_last);
+			
 		}
 		return str_result_last;
 	}
 }
-
 
 
